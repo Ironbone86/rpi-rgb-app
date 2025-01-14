@@ -146,7 +146,7 @@ class Config:
                 "off": "00:00"
             },
 
-            "pins": [23, 24, 25],
+            "pins": [17, 27, 22],
             # "bind-addr": "127.0.0.1",
             "bind-addr": "0.0.0.0",
             "bind-port": 5000
