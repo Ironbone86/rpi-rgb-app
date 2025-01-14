@@ -122,7 +122,9 @@ class Config:
               "red": [255, 0, 0],
               "green": [0, 255, 0],
               "blue": [0, 0, 255],
-              "white": [255, 255, 255]
+              "white": [255, 255, 255],
+              "pink": [255, 20, 147],
+              "black": [0, 0, 0]  
             },
 
             "sequences": {
@@ -137,6 +139,14 @@ class Config:
                         { "effecttype": "solid", "duration": 0, "color": "red" },
                         { "effecttype": "transition", "duration": 10 },
                         { "effecttype": "solid", "duration": 0, "color": "blue" }
+                    ]
+                },
+                "strobe": {
+                    "effecttype": "sequence",
+                    "duration": 200,
+                    "effects": [
+                        { "effecttype": "solid", "duration": 100, "color": "pink" },
+                        { "effecttype": "solid", "duration": 100, "color": "black" }
                     ]
                 }
             },
