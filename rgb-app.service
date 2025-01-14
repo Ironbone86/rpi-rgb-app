@@ -4,9 +4,9 @@ After=network.target
 
 [Service]
 # Specify your username
-User=pi
+User=john
 # Location of the rpi-rgb-app repository
-WorkingDirectory=/home/pi/src/rpi-rgb-app
+WorkingDirectory=/home/john/rpi-rgb-app
 ExecStart=python3 rgb_app.py
 SuccessExitStatus=143
 TimeoutStopSec=10
