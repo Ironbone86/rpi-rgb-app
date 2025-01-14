@@ -101,63 +101,56 @@ class Config:
                 del settings["sequences"][key]
         self.updateSetting(update, key)
 
-    @staticmethod
-    def _getDefaultSettings():
-        return {
-            "on": False,
-            "mode": "manual",   # "manual" or "schedule"
-            "effect": { "effecttype": "solid", "duration": None, "color": "white" },
-            # unnamed color effect
-            # "effect": { "effecttype": "solid", "duration": None, "color": [255, 255, 255] },
-            # loop effect
-            # "effect": { "effecttype": "loop", "duration": None, "sequence": "rainbow" },
-            # sequence effect by id
-            # "effect": { "id": ["sequences", "rainbow"] },
-            # color effect by id
-            # "effect": { "id": ["colors", "white"] },
-
-            "brightness": 100,  # 0 - 100
-
-            "colors": { # "name": [r, g, b]
-              "red": [255, 0, 0],
-              "green": [0, 255, 0],
-              "blue": [0, 0, 255],
-              "white": [255, 255, 255],
-              "pink": [255, 20, 147],
-              "black": [0, 0, 0]  
+@staticmethod
+def _getDefaultSettings():
+    return {
+        "on": False,
+        "mode": "manual",  # "manual" or "schedule"
+        "effect": {
+            "effecttype": "sequence",
+            "duration": 200,
+            "effects": [  # Standard: Strobe-Effekt
+                {"effecttype": "solid", "duration": 100, "color": "pink"},
+                {"effecttype": "solid", "duration": 100, "color": "black"}
+            ]
+        },
+        "brightness": 100,  # 0 - 100
+        "colors": {  # "name": [r, g, b]
+            "red": [255, 0, 0],
+            "green": [0, 255, 0],
+            "blue": [0, 0, 255],
+            "white": [255, 255, 255],
+            "pink": [255, 20, 147],
+            "black": [0, 0, 0]
+        },
+        "sequences": {
+            "rainbow": {
+                "effecttype": "sequence",
+                "duration": None,
+                "effects": [
+                    {"effecttype": "solid", "duration": 0, "color": "blue"},
+                    {"effecttype": "transition", "duration": 10},
+                    {"effecttype": "solid", "duration": 0, "color": "green"},
+                    {"effecttype": "transition", "duration": 10},
+                    {"effecttype": "solid", "duration": 0, "color": "red"},
+                    {"effecttype": "transition", "duration": 10},
+                    {"effecttype": "solid", "duration": 0, "color": "blue"}
+                ]
             },
-
-            "sequences": {
-                "rainbow": {
-                    "effecttype": "sequence",
-                    "duration": None,
-                    "effects": [
-                        { "effecttype": "solid", "duration": 0, "color": "blue" },
-                        { "effecttype": "transition", "duration": 10 },
-                        { "effecttype": "solid", "duration": 0, "color": "green" },
-                        { "effecttype": "transition", "duration": 10 },
-                        { "effecttype": "solid", "duration": 0, "color": "red" },
-                        { "effecttype": "transition", "duration": 10 },
-                        { "effecttype": "solid", "duration": 0, "color": "blue" }
-                    ]
-                },
-                "strobe": {
-                    "effecttype": "sequence",
-                    "duration": 200,
-                    "effects": [
-                        { "effecttype": "solid", "duration": 100, "color": "pink" },
-                        { "effecttype": "solid", "duration": 100, "color": "black" }
-                    ]
-                }
-            },
-
-            "schedule": {
-                "on": "00:00",
-                "off": "00:00"
-            },
-
-            "pins": [17, 27, 22],
-            # "bind-addr": "127.0.0.1",
-            "bind-addr": "0.0.0.0",
-            "bind-port": 5000
-        }
+            "strobe": {  # Der Strobe-Effekt als eigene Sequenz
+                "effecttype": "sequence",
+                "duration": None,  # Endlos, bis er deaktiviert wird
+                "effects": [
+                    {"effecttype": "solid", "duration": 100, "color": "pink"},
+                    {"effecttype": "solid", "duration": 100, "color": "black"}
+                ]
+            }
+        },
+        "schedule": {
+            "on": "00:00",
+            "off": "00:00"
+        },
+        "pins": [17, 27, 22],
+        "bind-addr": "0.0.0.0",
+        "bind-port": 5000
+    }
